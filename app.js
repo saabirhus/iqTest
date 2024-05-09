@@ -1,44 +1,36 @@
 const correctAnswers = ['B', 'A', 'B', 'C'];
-const form = document.querySelector('.quiz-form');
-const result = document.querySelector('.result');
+        const form = document.querySelector('.quiz-form');
+        const result = document.querySelector('.result');
 
-form.addEventListener('submit', e => {
-    e.preventDefault();
+        form.addEventListener('submit', e => {
+            e.preventDefault();
 
-    let score = 0;
-    const userAnswers = [form.q1.value, form.q2.value, form.q3.value, form.q4.value];
+            let score = 0;
+            const userAnswers = [form.q1.value, form.q2.value, form.q3.value, form.q4.value];
 
-    //check answers
-    userAnswers.forEach((answer,index)=> {
-        if (answer === correctAnswers[index]){
-            score +=25;
-        }
-    });
+            // Check answers
+            userAnswers.forEach((answer, index) => {
+                if (answer === correctAnswers[index]) {
+                    score += 25;
+                }
+            });
 
-    // show result on page 
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-    result.classList.remove('d-none');
+            // Show result on page
+            result.classList.remove('d-none');
 
-
-    let output = 0;
-    const timer = setInterval(() => {
-        result.querySelector('span').textContent = `${output}%`;
-        if (output === score) {
-            clearInterval(timer);
+            // Smooth scrolling to the top
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
-        
 
-        }else{
-            output++;
-        }
-    }, 10);
-});
-
-
-// window object(global object)
+            let output = 0;
+            const timer = setInterval(() => {
+                result.querySelector('span').textContent = `${output}%`;
+                if (output === score) {
+                    clearInterval(timer);
+                } else {
+                    output++;
+                }
+            }, 10);
+        });
